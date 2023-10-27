@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/table.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/table.css" />
+    <title>Alarmes NOC-PETZ</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Alarmes</h2>
+      <input
+        type="text"
+        class="form-control"
+        name="search"
+        id="inputIdAlarme"
+        placeholder="Buscar por nome do alarme"
+      />
+      <div class="row cols-6">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Alarme</th>
+              <th scope="col">Criticalidade</th>
+              <th scope="col">Responsavel</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Acionamento</th>
+              <th scope="col">Escalation</th>
+              <th scope="col">Squad</th>
+              <th scope="col">P</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-primary">
+        Cadastrar novo alarme ou editar existente
+      </button>
+    </div>
+    <script src="../script/table.js"></script>
+  </body>
+</html>

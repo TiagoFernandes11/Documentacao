@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/cadastro.css" />
+    <title>Cadastro de Alarme</title>
+  </head>
+  <body>
+    <div class="col-12 m-12">
+      <h2>Formulario de atualização de alarmes UServices</h2>
+      <form>
+        <div class="mb-4">
+          <label for="inputIdAlarme" class="form-label">ID do alarme:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nome"
+            id="inputIdAlarme"
+            placeholder="Insira o id do alarme"
+          />
+          <input
+            type="button"
+            class="btn btn-primary"
+            name="fill"
+            id="btnFill"
+            value="Preencher"
+          />
+          <input
+            type="search"
+            class="btn btn-primary"
+            name="search"
+            id="btnSearch"
+            value="Buscar"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="inputAlarmName" class="form-label">Nome do alarme:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nome"
+            id="inputAlarmName"
+            placeholder="Insira o nome do alarme"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="inputCriticality">Críticidade:</label>
+          <select id="inputCriticality" name="criticality">
+            <option value="Critica">Crítica</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Média</option>
+            <option value="Atencao">Atenção</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="inputDescription" class="form-label">Descrição:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="descricao"
+            id="inputDescription"
+            placeholder="Digite uma breve descrição"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="inputResponsible" class="form-label">Acionamento:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="responsavel"
+            id="inputResponsible"
+            placeholder="Digite o responsável"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="inputActuation" class="form-label">Atuação:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="atuacao"
+            id="inputActuation"
+            placeholder="Digite quem deve ser acionado"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="inputEscalation" class="form-label">Escalonamento:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="escalonamento"
+            id="inputEscalation"
+            placeholder="Digite pra quem deve ser escalado"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="inputSqaud" class="form-label">Squad:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="squad"
+            id="inputSqaud"
+            placeholder="Digite o squad responsável"
+            required
+          />
+        </div>
+        <input
+          type="submit"
+          class="btn btn-primary"
+          name="submit"
+          id="submit"
+          value="Cadastrar"
+        />
+
+        <input
+          type="button"
+          class="btn btn-primary"
+          name="btnUpdate"
+          id="btnUpdate"
+          value="Atualizar"
+        />
+
+        <input
+          type="button"
+          class="btn btn-primary"
+          name="btnDelete"
+          id="btnDelete"
+          value="Excluir"
+        />
+
+        <button type="button" class="btn btn-primary" id="btnBacktoTable">
+          Voltar para a tabela
+        </button>
+      </form>
+    </div>
+
+    <script src="../script/cadastroAlarms.js"></script>
+  </body>
+</html>
