@@ -117,7 +117,7 @@ btnSearch.addEventListener("click", function (event) {
 });
 
 btnBackToTable.addEventListener("click", function (event) {
-  window.location.href = "http://localhost:8080";
+  window.location.href = "http://localhost:8080/table";
 });
 
 btnUpdate.addEventListener("click", function (event) {

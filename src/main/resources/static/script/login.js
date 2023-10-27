@@ -40,6 +40,7 @@ function autenticar(email, senha, clients = arrClients){
 function logar() {
   if (autenticar(Iemail, isenha)) {
     alert("Login efetuado");
+    window.location.href = "http://localhost:8080/table";
   }else{
     alert("Email ou senha incorretos")
   }

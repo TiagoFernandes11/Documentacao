@@ -60,6 +60,7 @@ formulario.addEventListener("submit", function (event) {
   event.preventDefault();
   if (isenha.value === isenha2.value) {
     cadastrar();
+    window.location.href = "http://localhost:8080/login";
   } else {
     alert("Senhas não são identicas");
   }
