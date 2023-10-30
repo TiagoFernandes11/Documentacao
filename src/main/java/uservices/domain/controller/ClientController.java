@@ -71,6 +71,7 @@ public class ClientController {
 
     @PostMapping("/login")
     public ResponseEntity<Client> validarSenha(@RequestBody Client client){
+        //probrema aqui
         String senha = repository.getById(client.getId()).getSenha();
         Boolean valid = encoder.matches(client.getSenha(), senha);
         if(!valid){

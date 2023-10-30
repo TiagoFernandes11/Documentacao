@@ -17,6 +17,6 @@ create table alarm(
 create table client(
 	id integer(3) primary key auto_increment,
     email varchar(150),
-    senha varchar(30)
+    senha varchar(100)
 );
 
