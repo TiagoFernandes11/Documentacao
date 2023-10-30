@@ -35,7 +35,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Client findAlarmByID(@PathVariable Integer id) {
+    public Client findClientByid(@PathVariable Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
     }
@@ -43,10 +43,17 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client user) {
-        String encoder = this.encoder.encode(user.getSenha());
-        user.setSenha(encoder);
         return repository.save(user);
     }
+
+    //post com criptografia
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Client save(@RequestBody Client user) {
+//        String encoder = this.encoder.encode(user.getSenha());
+//        user.setSenha(encoder);
+//        return repository.save(user);
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -60,8 +67,6 @@ public class ClientController {
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Client user) {
-        String encoder = this.encoder.encode(user.getSenha());
-        user.setSenha(encoder);
         repository.findById(user.getId()).map(existingClient -> {
             user.setId(existingClient.getId());
             repository.save(user);
@@ -69,10 +74,23 @@ public class ClientController {
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
     }
 
+    //update com criptografia
+//    @PutMapping()
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void update(@RequestBody Client user) {
+//        String encoder = this.encoder.encode(user.getSenha());
+//        user.setSenha(encoder);
+//        repository.findById(user.getId()).map(existingClient -> {
+//            user.setId(existingClient.getId());
+//            repository.save(user);
+//            return existingClient;
+//        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
+//    }
+
+    //tentativa de metodo de validação com senha criptografada
     @PostMapping("/login")
     public ResponseEntity<Client> validarSenha(@RequestBody Client client){
-        //probrema aqui
-        String senha = repository.getById(client.getId()).getSenha();
+        String senha = repository.findClientByEmail(client.getEmail()).getSenha();
         Boolean valid = encoder.matches(client.getSenha(), senha);
         if(!valid){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
