@@ -37,6 +37,8 @@ function autenticar(email, senha, clients = arrClients){
   }
 }
 
+//post nesse endereço:
+//http://localhost:8080/api/clients/login
 function logar() {
   if (autenticar(Iemail, isenha)) {
     alert("Login efetuado");

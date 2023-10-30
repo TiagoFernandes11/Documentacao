@@ -3,6 +3,9 @@ package uservices.domain.controller;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import uservices.domain.Entity.Client;
@@ -16,9 +19,11 @@ import java.util.List;
 public class ClientController {
 
     private ClientRepository repository;
+    private PasswordEncoder encoder;
 
     public ClientController(ClientRepository repository) {
         this.repository = repository;
+        this.encoder = new BCryptPasswordEncoder();
     }
 
     @GetMapping
@@ -38,6 +43,8 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client user) {
+        String encoder = this.encoder.encode(user.getSenha());
+        user.setSenha(encoder);
         return repository.save(user);
     }
 
@@ -53,6 +60,8 @@ public class ClientController {
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Client user) {
+        String encoder = this.encoder.encode(user.getSenha());
+        user.setSenha(encoder);
         repository.findById(user.getId()).map(existingClient -> {
             user.setId(existingClient.getId());
             repository.save(user);
@@ -60,4 +69,13 @@ public class ClientController {
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Client> validarSenha(@RequestBody Client client){
+        String senha = repository.getById(client.getId()).getSenha();
+        Boolean valid = encoder.matches(client.getSenha(), senha);
+        if(!valid){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(200).build();
+    }
 }
