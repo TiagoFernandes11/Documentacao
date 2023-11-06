@@ -1,9 +1,11 @@
+import { Constantes } from "./Constantes/Constantes";
+
 const formulario = document.querySelector("form");
 const Iemail = document.querySelector("#inputEmail");
 const isenha = document.querySelector("#inputPassword");
 let arrClients = [];
 
-const linkAPI = "http://localhost:8080/api/clients";
+const linkAPI = Constantes.BASE_API_CLIENTS;
 
 function preencherArrayClients() {
   const items = fetch(linkAPI)
@@ -13,8 +15,8 @@ function preencherArrayClients() {
     .then((post) => {
       post.forEach((items) => {
         let clientValid = {
-          email: '',
-          senha:''
+          email: "",
+          senha: "",
         };
         clientValid.email = items.email;
         clientValid.senha = items.senha;
@@ -23,13 +25,13 @@ function preencherArrayClients() {
     });
 }
 
-function autenticar(email, senha, clients = arrClients){
+function autenticar(email, senha, clients = arrClients) {
   let i = 0;
-  while( i < clients.length){
-    if(clients[i].email === email.value){
-      if(clients[i].senha === senha.value){
+  while (i < clients.length) {
+    if (clients[i].email === email.value) {
+      if (clients[i].senha === senha.value) {
         return true;
-      }else{
+      } else {
         return false;
       }
     }
@@ -42,9 +44,9 @@ function autenticar(email, senha, clients = arrClients){
 function logar() {
   if (autenticar(Iemail, isenha)) {
     alert("Login efetuado");
-    window.location.href = "http://localhost:8080/table";
-  }else{
-    alert("Email ou senha incorretos")
+    window.location.href = Constantes.TABELA;
+  } else {
+    alert("Email ou senha incorretos");
   }
 }
 

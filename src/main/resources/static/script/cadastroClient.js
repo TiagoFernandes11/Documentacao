@@ -1,9 +1,11 @@
+import { Constantes } from "./Constantes/Constantes";
+
 const formulario = document.querySelector("form");
 const Iemail = document.querySelector("#inputEmail");
 const isenha = document.querySelector("#inputPassword");
 const isenha2 = document.querySelector("#inputPassword2");
 
-const linkAPI = "http://localhost:8080/api/clients";
+const linkAPI = Constantes.BASE_API_CLIENTS;
 
 let arrEmails = [];
 
