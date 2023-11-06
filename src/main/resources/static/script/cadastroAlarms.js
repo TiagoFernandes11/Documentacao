@@ -1,5 +1,3 @@
-import { Constantes } from "./Constantes/Constantes";
-
 const formulario = document.querySelector("form");
 const btnFill = document.querySelector("#btnFill");
 const btnSearch = document.querySelector("#btnSearch");
@@ -16,7 +14,7 @@ const iActuation = document.querySelector("#inputActuation");
 const iEscalation = document.querySelector("#inputEscalation");
 const iSquad = document.querySelector("#inputSqaud");
 
-const linkAPI = Constantes.BASE_API_ALARMS;
+const linkAPI = "http://localhost:8080/api/alarms"
 
 let arrAlarms = [];
 

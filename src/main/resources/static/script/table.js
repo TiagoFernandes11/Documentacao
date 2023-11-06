@@ -1,10 +1,8 @@
-import { Constantes } from "./Constantes/Constantes";
-
 btnRelocate = document.getElementsByTagName("button")[0];
 iSearch = document.querySelector("#inputIdAlarme");
 table = document.getElementsByTagName("table")[0];
 
-const linkAPI = Constantes.BASE_API_ALARMS;
+const linkAPI = "http://localhost:8080/api/alarms";
 
 //open("url", "nome da janela", "width = 600,height = 300") -> popup, fazer tela de procedimento
 
@@ -114,7 +112,7 @@ function renderTable() {
 }
 
 btnRelocate.addEventListener("click", function (event) {
-  window.location.href = Constantes.CADASTRO_ALARMES;
+  window.location.href = "http://localhost:8080/cadastroalarme";
 });
 
 iSearch.addEventListener("input", function () {
