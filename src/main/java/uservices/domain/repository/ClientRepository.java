@@ -11,6 +11,8 @@ import java.util.ListIterator;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer>{
 
+    public List<Client> findByEmail(String email);
+
     public default Client findClientByEmail(String email){
         ArrayList<Client> list = (ArrayList<Client>) findAll();
         int i = 0;

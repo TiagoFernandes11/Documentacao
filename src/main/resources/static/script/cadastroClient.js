@@ -19,7 +19,8 @@ function cadastrar() {
       method: "POST",
       body: JSON.stringify({
         email: Iemail.value,
-        senha: isenha.value,
+        pwd: isenha.value,
+        role: "user"
       }),
     });
     alert("Cadastro concluido");
@@ -60,7 +61,7 @@ formulario.addEventListener("submit", function (event) {
   event.preventDefault();
   if (isenha.value === isenha2.value) {
     cadastrar();
-    window.location.href = "http://localhost:8080/login";
+    window.location.href = "http://localhost:8080";
   } else {
     alert("Senhas não são identicas");
   }

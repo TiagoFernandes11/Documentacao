@@ -11,15 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping()
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 public class Application {
-    @Bean
-    @GetMapping()
-    public ModelAndView login() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("assets/login.html");
-        return modelAndView;
-    }
+
     @Bean
     @GetMapping("/table")
     public ModelAndView index() {

@@ -40,10 +40,28 @@ public class ClientController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
     }
 
+
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Client save(@RequestBody Client user) {
-        return repository.save(user);
+    public ResponseEntity<String> registerUser(@RequestBody Client client){
+        Client savedCustomer = null;
+        ResponseEntity response = null;
+        try{
+            String hashedPassword = encoder.encode(client.getPwd());
+            client.setPwd(hashedPassword);
+            savedCustomer = repository.save(client);
+            if(savedCustomer.getId() > 0){
+                response = ResponseEntity
+                        .status(HttpStatus.CREATED)
+                        .body("Given user details are sucessfully registered");
+            }
+        } catch (Exception ex){
+            response = ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An exception ocurred due to " + ex.getMessage());
+        }
+        return response;
     }
 
     //post com criptografia
@@ -90,8 +108,8 @@ public class ClientController {
     //tentativa de metodo de validação com senha criptografada
     @PostMapping("/login")
     public ResponseEntity<Client> validarSenha(@RequestBody Client client){
-        String senha = repository.findClientByEmail(client.getEmail()).getSenha();
-        Boolean valid = encoder.matches(client.getSenha(), senha);
+        String senha = repository.findClientByEmail(client.getEmail()).getPwd();
+        Boolean valid = encoder.matches(client.getPwd(), senha);
         if(!valid){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
