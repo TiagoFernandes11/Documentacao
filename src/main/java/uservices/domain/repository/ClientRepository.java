@@ -6,7 +6,6 @@ import uservices.domain.Entity.Client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer>{

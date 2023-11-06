@@ -21,3 +21,5 @@ create table client(
     role varchar(45)
 );
 
+select * from client;
+
