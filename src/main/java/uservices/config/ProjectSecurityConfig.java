@@ -57,11 +57,8 @@ public class ProjectSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
-                        .requestMatchers("/table").hasAnyAuthority("VIEWTABLE","EDITTABLE","ROLE_ADMIN")
-                        .requestMatchers("/cadastroalarme").hasAuthority("EDITTABLE")
-                        .requestMatchers("/cadastrocliente").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers("/api/*").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers("/login").permitAll())
+                        .requestMatchers("/assets/*", "/table", "/cadastroalarme", "/cadastrocliente").authenticated()
+                        .requestMatchers("").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
