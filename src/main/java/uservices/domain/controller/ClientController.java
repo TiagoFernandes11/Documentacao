@@ -50,7 +50,7 @@ public class ClientController {
             String hashedPassword = encoder.encode(client.getPwd());
             client.setPwd(hashedPassword);
             savedCustomer = repository.save(client);
-            if(savedCustomer.getId() > 0){
+            if(savedCustomer.getClient_id() > 0){
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body("Given user details are sucessfully registered");
@@ -84,8 +84,8 @@ public class ClientController {
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Client user) {
-        repository.findById(user.getId()).map(existingClient -> {
-            user.setId(existingClient.getId());
+        repository.findById(user.getClient_id()).map(existingClient -> {
+            user.setClient_id(existingClient.getClient_id());
             repository.save(user);
             return existingClient;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));

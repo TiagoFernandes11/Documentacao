@@ -18,9 +18,9 @@ public class Authority {
     @GenericGenerator(name = "native",strategy = "native")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Client client;
-
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 }

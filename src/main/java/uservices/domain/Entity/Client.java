@@ -18,7 +18,8 @@ import java.util.Set;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private Integer client_id;
 
     @NotBlank(message = "O campo E-Mail é obrigatório!")
     @Column(length = 150, nullable = false, unique = true)
@@ -35,7 +36,7 @@ public class Client {
     private String role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="client",fetch=FetchType.EAGER)
     private Set<Authority> authorities;
 
 

@@ -23,7 +23,7 @@ create table client(
 
 
  INSERT INTO `client` (`email`, `pwd`, `role`)
-  VALUES ("tiagofernandesribeiro@yahoo.com.br","1234567", 'ROLE_USER');
+  VALUES ("tiago",'$2y$12$oRRbkNfwuR8ug4MlzH5FOeui.//1mkd.RsOAJMbykTSupVy.x/vb2', 'ROLE_USER');
 
 #mudar tudo ainda
 CREATE TABLE `authorities` (
@@ -53,5 +53,5 @@ INSERT INTO `authorities` (`client_id`, `name`)
  INSERT INTO `authorities` (`client_id`, `name`)
   VALUES (1, 'ROLE_ADMIN');
   
-  select * from authorities;
+  select * from client;
 
