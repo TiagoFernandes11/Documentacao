@@ -11,7 +11,6 @@ import uservices.domain.repository.AlarmRepository;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/alarms")
 public class AlarmController {
     private AlarmRepository repository;

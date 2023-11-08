@@ -3,7 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/table.css" />
+    <style>
+      .container {
+        border: 2px solid #adb5bd;
+        padding: 10px;
+        margin-bottom: 300px;
+        height: 100%;
+      }
+
+      .row {
+        height: 100px;
+        padding: 10px;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,7 +29,6 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../css/table.css" />
     <title>Alarmes NOC-PETZ</title>
   </head>
   <body>
@@ -50,6 +63,132 @@
         Cadastrar novo alarme ou editar existente
       </button>
     </div>
-    <script src="../script/table.js"></script>
+    <script>
+      btnRelocate = document.getElementsByTagName("button")[0];
+      iSearch = document.querySelector("#inputIdAlarme");
+      table = document.getElementsByTagName("table")[0];
+
+      const linkAPI = "http://localhost:8080/api/alarms";
+
+      //open("url", "nome da janela", "width = 600,height = 300") -> popup, fazer tela de procedimento
+
+      function renderTableByWord(word) {
+        const items = fetch(linkAPI)
+          .then((data) => {
+            return data.json();
+          })
+          .then((post) => {
+            post.forEach((items) => {
+              if (items.alarm_name.toLowerCase().includes(word)) {
+                table.innerHTML +=
+                  "<tr><td><a href=" +
+                  linkAPI +
+                  "/" +
+                  items.id.value +
+                  ">" +
+                  items.id +
+                  "</a>" +
+                  "</td>" +
+                  "<td>" +
+                  items.alarm_name +
+                  "</td>" +
+                  "<td>" +
+                  items.criticality +
+                  "</td>" +
+                  "<td>" +
+                  items.responsible +
+                  "</td>" +
+                  "<td>" +
+                  items.description +
+                  "</td>" +
+                  "<td>" +
+                  items.actuation +
+                  "</td>" +
+                  "<td>" +
+                  items.escalation +
+                  "</td>" +
+                  "<td>" +
+                  items.squad +
+                  "</td>" +
+                  //tentativa de botao popup
+                  "<td>" +
+                  '<button type="button" class="procedimentos">' +
+                  "P" +
+                  "</button>" +
+                  "</td>";
+              }
+            });
+          });
+      }
+
+      function cleanTable() {
+        table.innerHTML =
+          '<thead><tr><th scope="col">ID</th><th scope="col">Alarme</th>' +
+          '<th scope="col">Criticalidade</th><th scope="col">Responsavel</th>' +
+          '<th scope="col">Descrição</th><th scope="col">Acionamento</th>' +
+          '<th scope="col">Escalation</th><th scope="col">Squad</th>' +
+          "</tr></thead><tbody></tbody>";
+      }
+
+      function renderTable() {
+        const items = fetch(linkAPI)
+          .then((data) => {
+            return data.json();
+          })
+          .then((post) => {
+            post.forEach((items) => {
+              table.innerHTML +=
+                "<tr><td><a href=" +
+                linkAPI +
+                "/" +
+                items.id +
+                ">" +
+                items.id +
+                "</a>" +
+                "</td>" +
+                "<td>" +
+                items.alarm_name +
+                "</td>" +
+                "<td>" +
+                items.criticality +
+                "</td>" +
+                "<td>" +
+                items.responsible +
+                "</td>" +
+                "<td>" +
+                items.description +
+                "</td>" +
+                "<td>" +
+                items.actuation +
+                "</td>" +
+                "<td>" +
+                items.escalation +
+                "</td>" +
+                "<td>" +
+                items.squad +
+                "</td>" +
+                //tentativa de botao popup
+                "<td>" +
+                '<button type="button" class="procedimentos">' +
+                "P" +
+                "</button>" +
+                "</td>";
+            });
+          });
+      }
+
+      btnRelocate.addEventListener("click", function (event) {
+        window.location.href = "http://localhost:8080/cadastroalarme";
+      });
+
+      iSearch.addEventListener("input", function () {
+        cleanTable();
+        renderTableByWord(iSearch.value.toLowerCase());
+      });
+
+      if (iSearch.value === "") {
+        renderTable();
+      }
+    </script>
   </body>
 </html>

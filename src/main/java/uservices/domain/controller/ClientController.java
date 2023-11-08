@@ -14,7 +14,6 @@ import uservices.domain.repository.ClientRepository;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/clients")
 public class ClientController {
 
