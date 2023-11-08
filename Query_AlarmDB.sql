@@ -36,19 +36,19 @@ CREATE TABLE `authorities` (
 );
 
 INSERT INTO `authorities` (`client_id`, `name`)
- VALUES (1, 'VIEWACCOUNT');
+ VALUES (1, 'VIEWTABLE');
 
 INSERT INTO `authorities` (`client_id`, `name`)
- VALUES (1, 'VIEWCARDS');
+ VALUES (1, 'VIEWCLIENTS');
 
  INSERT INTO `authorities` (`client_id`, `name`)
-  VALUES (1, 'VIEWLOANS');
+  VALUES (1, 'VIEWALARMS');
 
  INSERT INTO `authorities` (`client_id`, `name`)
-   VALUES (1, 'VIEWBALANCE');
+   VALUES (1, 'VIEWTABLE');
 
  INSERT INTO `authorities` (`client_id`, `name`)
-  VALUES (1, 'ROLE_USER');
+  VALUES (1, 'EDITTABLE');
 
  INSERT INTO `authorities` (`client_id`, `name`)
   VALUES (1, 'ROLE_ADMIN');
