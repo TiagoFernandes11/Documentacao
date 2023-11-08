@@ -17,7 +17,7 @@ public class Client {
     private Integer id;
 
     @NotBlank(message = "O campo E-Mail é obrigatório!")
-    @Column(length = 150, nullable = false)
+    @Column(length = 150, nullable = false, unique = true)
     @Email(message = "Insira um e-mail válido")
     private String email;
 
