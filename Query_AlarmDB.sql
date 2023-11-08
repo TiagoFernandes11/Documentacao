@@ -21,5 +21,37 @@ create table client(
     role varchar(45)
 );
 
-select * from client;
+
+ INSERT INTO `client` (`email`, `pwd`, `role`)
+  VALUES ("tiagofernandesribeiro@yahoo.com.br","1234567", 'ROLE_USER');
+
+#mudar tudo ainda
+CREATE TABLE `authorities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `client_id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`id`),
+  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
+);
+
+INSERT INTO `authorities` (`client_id`, `name`)
+ VALUES (1, 'VIEWACCOUNT');
+
+INSERT INTO `authorities` (`client_id`, `name`)
+ VALUES (1, 'VIEWCARDS');
+
+ INSERT INTO `authorities` (`client_id`, `name`)
+  VALUES (1, 'VIEWLOANS');
+
+ INSERT INTO `authorities` (`client_id`, `name`)
+   VALUES (1, 'VIEWBALANCE');
+
+ INSERT INTO `authorities` (`client_id`, `name`)
+  VALUES (1, 'ROLE_USER');
+
+ INSERT INTO `authorities` (`client_id`, `name`)
+  VALUES (1, 'ROLE_ADMIN');
+  
+  select * from authorities;
 
