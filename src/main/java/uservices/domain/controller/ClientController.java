@@ -63,14 +63,6 @@ public class ClientController {
         return response;
     }
 
-    //post com criptografia
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Client save(@RequestBody Client user) {
-//        String encoder = this.encoder.encode(user.getSenha());
-//        user.setSenha(encoder);
-//        return repository.save(user);
-//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -83,26 +75,15 @@ public class ClientController {
 
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Client user) {
-        repository.findById(user.getClient_id()).map(existingClient -> {
-            user.setClient_id(existingClient.getClient_id());
-            repository.save(user);
+    public void update(@RequestBody Client client) {
+        String encoder = this.encoder.encode(client.getPwd());
+        client.setPwd(encoder);
+        repository.findById(client.getClient_id()).map(existingClient -> {
+            client.setClient_id(existingClient.getClient_id());
+            repository.save(client);
             return existingClient;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
     }
-
-    //update com criptografia
-//    @PutMapping()
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void update(@RequestBody Client user) {
-//        String encoder = this.encoder.encode(user.getSenha());
-//        user.setSenha(encoder);
-//        repository.findById(user.getId()).map(existingClient -> {
-//            user.setId(existingClient.getId());
-//            repository.save(user);
-//            return existingClient;
-//        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado"));
-//    }
 
     //tentativa de metodo de validação com senha criptografada
     @PostMapping("/login")

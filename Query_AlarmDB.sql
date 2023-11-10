@@ -35,11 +35,11 @@ CREATE TABLE `authorities` (
   CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
 );
 
- INSERT INTO `authorities` (`customer_id`, `name`)
+ INSERT INTO `authorities` (`client_id`, `name`)
   VALUES (1, 'ROLE_USER');
 
- INSERT INTO `authorities` (`customer_id`, `name`)
+ INSERT INTO `authorities` (`client_id`, `name`)
   VALUES (1, 'ROLE_ADMIN');
-  
+
   select * from client;
 
