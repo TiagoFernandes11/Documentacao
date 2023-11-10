@@ -57,7 +57,7 @@ public class ProjectSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
-                        .requestMatchers("/assets/*", "/table", "/cadastroalarme", "/cadastrocliente", "/api/alarms/*").authenticated()
+                        .requestMatchers("/assets/*", "/table", "/cadastroalarme", "/cadastrocliente", "/api/alarms", "/api/alarms/*", "/api/clients").authenticated()
                         .requestMatchers("").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
