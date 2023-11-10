@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class TableView {
     @Bean
-    @GetMapping("/table")
+    @GetMapping
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("assets/table.html");
